@@ -20,7 +20,7 @@ pipeline {
                     credentialsId: 'MyAWS',
                     accessKeyVariable: 'AWS_ACCESS_KEY_ID',
                     secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]){
-                        sh(script: 'aws s3 cp /var/lib/jenkins/workspace/JenkinsPopeline/index1.html s3://test-env-jenkins-20250608/')
+                        sh(script: 'aws s3 cp /var/lib/jenkins/workspace/JenkinsPopeline/index.html s3://test-env-jenkins-20250608/')
                     }
             }
         }
@@ -28,7 +28,7 @@ pipeline {
             steps {
                 echo 'Testing'
                 script {
-                    def url = 'https://test-env-jenkins-20250608.s3.ap-northeast-1.amazonaws.com/index.html'
+                    def url = 'https://test-env-jenkins-20250608.s3.ap-northeast-1.amazonaws.com/index1.html'
                     def response = sh(script: "curl -s -o /dev/null -w '%{http_code}' '$url'", returnStdout: true)
 
                     if (response == '200') {
